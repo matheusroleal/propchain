@@ -1,2 +1,2 @@
-# file-transaction-service-
+# file-transaction-service
 A file transaction service using ethereum 
