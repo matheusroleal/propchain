@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Transaction Chain
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/../css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <div class="logo">
+        <a class="simple-text logo-normal">
+          Transaction Chain
+          <!-- <div class="logo-image-big">
+          <img src="img/logo-big.png">
+        </div> -->
+      </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li>
+          <a href="/">
+            <i class="nc-icon nc-globe"></i>
+            <p>Home</p>
+          </a>
+        </li>
+        <li>
+          <a href="/transactions/create">
+            <i class="nc-icon nc-book-bookmark"></i>
+            <p>Create a Transaction</p>
+          </a>
+        </li>
+        <li>
+          <a href="/transactions/list">
+            <i class="nc-icon nc-align-left-2"></i>
+            <p>List of Transactions</p>
+          </a>
+        </li>
+        <li class="active">
+          <a href="/transactions/search">
+            <i class="nc-icon nc-zoom-split"></i>
+            <p>Search a Transaction</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Search a Transaction</h5>
+            </div>
+            <div class="card-body">
+              <form id="uploadbanner" enctype="multipart/form-data" method="post" action="/transactions/new">
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>Search</label>
+                      <input type="text" id="search" name="search" class="form-control" placeholder="Transaction Id" value="">
+                      <div class="update ml-auto mr-auto">
+                        <button value="submit" type="submit" class="btn btn-primary btn-round">Send</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>
+                      Sender
+                    </th>
+                    <th>
+                      Receiver
+                    </th>
+                    <th>
+                      Data
+                    </th>
+                    <th class="text-right">
+                      Timestamp
+                    </th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Dakota Rice
+                      </td>
+                      <td>
+                        Niger
+                      </td>
+                      <td>
+                        Oud-Turnhout
+                      </td>
+                      <td class="text-right">
+                        $36,738
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer footer-black  footer-white ">
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="footer-nav">
+          <ul>
+            <li>
+              <a target="_blank">Blog</a>
+            </li>
+            <li>
+              <a target="_blank">Licenses</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="credits ml-auto">
+          <span class="copyright">
+            ©
+            <script>
+            document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+<!--   Core JS Files   -->
+<script src="../js/core/jquery.min.js"></script>
+<script src="../js/core/popper.min.js"></script>
+<script src="../js/core/bootstrap.min.js"></script>
+<script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+</body>
+
+</html>

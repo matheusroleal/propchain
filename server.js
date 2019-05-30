@@ -10,6 +10,7 @@ const upload = multer();
 
 app.use(express.static(__dirname+'/view'));
 
+// Front End Requests
 app.get('/', function (req, res) {
   res.sendFile(__dirname+'/view/routes/dashboard.html');
 });
@@ -18,10 +19,15 @@ app.get('/transactions/list', function (req, res) {
   res.sendFile(__dirname+'/view/routes/list.html');
 });
 
+app.get('/transactions/search', function (req, res) {
+  res.sendFile(__dirname+'/view/routes/search.html');
+});
+
 app.get('/transactions/create', function (req, res) {
   res.sendFile(__dirname+'/view/routes/create.html');
 });
 
+// Back End Requests
 app.post('/transactions/new', upload.any(), function (req, res) {
   console.log(req.body);
   console.log(req.files);
@@ -29,6 +35,7 @@ app.post('/transactions/new', upload.any(), function (req, res) {
   res.redirect('/transactions/create')
 });
 
+// Listening Port
 app.listen(3000, function () {
   console.log('Listening on port http://localhost:3000');
 });
