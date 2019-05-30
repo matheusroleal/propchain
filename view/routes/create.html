@@ -149,6 +149,29 @@
   <script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <!-- Web3 -->
+  <script src="../js/plugins/web3.min.js"></script>
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+        // Load WEB3
+        // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
+        if(typeof web3 !== 'undefined') {
+          // Connected my metamask account to app
+          ethereum.enable()
+
+          web3 = new Web3(web3.currentProvider);
+          var account = web3.eth.accounts[0];
+          $('#sender').val(account);
+          var accountInterval = setInterval(function() {
+            if (web3.eth.accounts[0] !== account) {
+              account = web3.eth.accounts[0];
+              $('#sender').val(account);
+              document.getElementById("sender").innerHTML = account;
+            }
+          }, 100);
+        }
+    });
+  </script>
   <script type="text/javascript">
     $('#file-upload').change(function() {
       var i = $(this).prev('label').clone();
