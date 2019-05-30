@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+// Upload local modules
+var file_system = require('./utils/file_system.js')
+
 // Handling multipart/form-data from /transactions/new
 const multer = require('multer');
 const upload = multer();
@@ -22,6 +25,7 @@ app.get('/transactions/create', function (req, res) {
 app.post('/transactions/new', upload.any(), function (req, res) {
   console.log(req.body);
   console.log(req.files);
+  var file_path = file_system.load_buffer_file(req.files[0].buffer, req.files[0].originalname);
   res.redirect('/transactions/create')
 });
 
