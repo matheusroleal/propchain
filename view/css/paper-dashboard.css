@@ -2299,14 +2299,6 @@ License - nucleoapp.com/license/
 	font icons
 -------------------------*/
 
-.nc-air-baloon::before {
-  content: "\ea01";
-}
-
-.nc-album-2::before {
-  content: "\ea02";
-}
-
 .nc-alert-circle-i::before {
   content: "\ea04";
 }
@@ -2319,112 +2311,16 @@ License - nucleoapp.com/license/
   content: "\ea05";
 }
 
-.nc-ambulance::before {
-  content: "\ea06";
-}
-
-.nc-app::before {
-  content: "\ea07";
-}
-
-.nc-atom::before {
-  content: "\ea08";
-}
-
 .nc-badge::before {
   content: "\ea09";
-}
-
-.nc-bag-16::before {
-  content: "\ea0a";
-}
-
-.nc-bank::before {
-  content: "\ea0b";
-}
-
-.nc-basket::before {
-  content: "\ea0c";
-}
-
-.nc-bell-55::before {
-  content: "\ea0d";
-}
-
-.nc-bold::before {
-  content: "\ea0e";
 }
 
 .nc-book-bookmark::before {
   content: "\ea0f";
 }
 
-.nc-bookmark-2::before {
-  content: "\ea10";
-}
-
-.nc-box-2::before {
-  content: "\ea11";
-}
-
-.nc-box::before {
-  content: "\ea12";
-}
-
-.nc-briefcase-24::before {
-  content: "\ea13";
-}
-
-.nc-bulb-63::before {
-  content: "\ea14";
-}
-
-.nc-bullet-list-67::before {
-  content: "\ea15";
-}
-
-.nc-bus-front-12::before {
-  content: "\ea16";
-}
-
-.nc-button-pause::before {
-  content: "\ea17";
-}
-
-.nc-button-play::before {
-  content: "\ea18";
-}
-
-.nc-button-power::before {
-  content: "\ea19";
-}
-
-.nc-calendar-60::before {
-  content: "\ea1a";
-}
-
-.nc-camera-compact::before {
-  content: "\ea1b";
-}
-
-.nc-caps-small::before {
-  content: "\ea1c";
-}
-
-.nc-cart-simple::before {
-  content: "\ea1d";
-}
-
 .nc-chart-bar-32::before {
   content: "\ea1e";
-}
-
-.nc-chart-pie-36::before {
-  content: "\ea1f";
-}
-
-.nc-chat-33::before {
-  content: "\ea20";
 }
 
 .nc-check-2::before {
@@ -2443,148 +2339,12 @@ License - nucleoapp.com/license/
   content: "\ea24";
 }
 
-.nc-compass-05::before {
-  content: "\ea25";
-}
-
-.nc-controller-modern::before {
-  content: "\ea26";
-}
-
-.nc-credit-card::before {
-  content: "\ea27";
-}
-
-.nc-delivery-fast::before {
-  content: "\ea28";
-}
-
-.nc-diamond::before {
-  content: "\ea29";
-}
-
-.nc-email-85::before {
-  content: "\ea2a";
-}
-
 .nc-favourite-28::before {
   content: "\ea2b";
 }
 
-.nc-glasses-2::before {
-  content: "\ea2c";
-}
-
-.nc-globe-2::before {
-  content: "\ea2d";
-}
-
 .nc-globe::before {
   content: "\ea2e";
-}
-
-.nc-hat-3::before {
-  content: "\ea2f";
-}
-
-.nc-headphones::before {
-  content: "\ea30";
-}
-
-.nc-html5::before {
-  content: "\ea31";
-}
-
-.nc-image::before {
-  content: "\ea32";
-}
-
-.nc-istanbul::before {
-  content: "\ea33";
-}
-
-.nc-key-25::before {
-  content: "\ea34";
-}
-
-.nc-laptop::before {
-  content: "\ea35";
-}
-
-.nc-layout-11::before {
-  content: "\ea36";
-}
-
-.nc-lock-circle-open::before {
-  content: "\ea37";
-}
-
-.nc-map-big::before {
-  content: "\ea38";
-}
-
-.nc-minimal-down::before {
-  content: "\ea39";
-}
-
-.nc-minimal-left::before {
-  content: "\ea3a";
-}
-
-.nc-minimal-right::before {
-  content: "\ea3b";
-}
-
-.nc-minimal-up::before {
-  content: "\ea3c";
-}
-
-.nc-mobile::before {
-  content: "\ea3d";
-}
-
-.nc-money-coins::before {
-  content: "\ea3e";
-}
-
-.nc-note-03::before {
-  content: "\ea3f";
-}
-
-.nc-palette::before {
-  content: "\ea40";
-}
-
-.nc-paper::before {
-  content: "\ea41";
-}
-
-.nc-pin-3::before {
-  content: "\ea42";
-}
-
-.nc-planet::before {
-  content: "\ea43";
-}
-
-.nc-refresh-69::before {
-  content: "\ea44";
-}
-
-.nc-ruler-pencil::before {
-  content: "\ea45";
-}
-
-.nc-satisfied::before {
-  content: "\ea46";
-}
-
-.nc-scissors::before {
-  content: "\ea47";
-}
-
-.nc-send::before {
-  content: "\ea48";
 }
 
 .nc-settings-gear-65::before {
@@ -2593,106 +2353,6 @@ License - nucleoapp.com/license/
 
 .nc-settings::before {
   content: "\ea4a";
-}
-
-.nc-share-66::before {
-  content: "\ea4b";
-}
-
-.nc-shop::before {
-  content: "\ea4c";
-}
-
-.nc-simple-add::before {
-  content: "\ea4d";
-}
-
-.nc-simple-delete::before {
-  content: "\ea4e";
-}
-
-.nc-simple-remove::before {
-  content: "\ea4f";
-}
-
-.nc-single-02::before {
-  content: "\ea50";
-}
-
-.nc-single-copy-04::before {
-  content: "\ea51";
-}
-
-.nc-sound-wave::before {
-  content: "\ea52";
-}
-
-.nc-spaceship::before {
-  content: "\ea53";
-}
-
-.nc-sun-fog-29::before {
-  content: "\ea54";
-}
-
-.nc-support-17::before {
-  content: "\ea55";
-}
-
-.nc-tablet-2::before {
-  content: "\ea56";
-}
-
-.nc-tag-content::before {
-  content: "\ea57";
-}
-
-.nc-tap-01::before {
-  content: "\ea58";
-}
-
-.nc-tie-bow::before {
-  content: "\ea59";
-}
-
-.nc-tile-56::before {
-  content: "\ea5a";
-}
-
-.nc-time-alarm::before {
-  content: "\ea5b";
-}
-
-.nc-touch-id::before {
-  content: "\ea5c";
-}
-
-.nc-trophy::before {
-  content: "\ea5d";
-}
-
-.nc-tv-2::before {
-  content: "\ea5e";
-}
-
-.nc-umbrella-13::before {
-  content: "\ea5f";
-}
-
-.nc-user-run::before {
-  content: "\ea60";
-}
-
-.nc-vector::before {
-  content: "\ea61";
-}
-
-.nc-watch-time::before {
-  content: "\ea62";
-}
-
-.nc-world-2::before {
-  content: "\ea63";
 }
 
 .nc-zoom-split::before {
