@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+    - "27017:27017"
+  web:
+    build: .
+    volumes:
+      - .:/opt/app-root/current
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=America/Sao_Paulo
+      - MONGODB_DATABASENAME=mongo
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+    depends_on:
+      - mongodb
