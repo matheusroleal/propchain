@@ -1,0 +1,114 @@
+<%- contentFor('navbar') %>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li>
+      <a href="/">
+        <i class="nc-icon nc-globe"></i>
+        <p>Home</p>
+      </a>
+    </li>
+    <li class="active">
+      <a href="/transactions/create">
+        <i class="nc-icon nc-book-bookmark"></i>
+        <p>Create a Transaction</p>
+      </a>
+    </li>
+    <li>
+      <a href="/transactions/list">
+        <i class="nc-icon nc-align-left-2"></i>
+        <p>List of Transactions</p>
+      </a>
+    </li>
+    <li>
+      <a href="/transactions/search">
+        <i class="nc-icon nc-zoom-split"></i>
+        <p>Search a Transaction</p>
+      </a>
+    </li>
+  </ul>
+</div>
+<%- contentFor('body') %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Create a Transaction</h5>
+      </div>
+      <div class="card-body">
+        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="/transactions/new">
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Sender</label>
+                <input type="text" id="sender" name="sender" class="form-control" placeholder="Sender Address" value="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>File</label>
+                <br>
+                <label class="btn btn-primary btn-round" for="file-upload">
+                  <i></i> Choose file
+                </label>
+                <input id="file-upload" type="file" style="display:none;">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="receiver" name="receiver" class="form-control" placeholder="Receiver Address" value="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Observation</label>
+                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button value="submit" type="submit" class="btn btn-primary btn-round">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Web3 -->
+<script src="../js/plugins/web3.min.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', function() {
+  // Load WEB3
+  // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
+  if(typeof web3 !== 'undefined') {
+    // Connected my metamask account to app
+    ethereum.enable()
+
+    web3 = new Web3(web3.currentProvider);
+    var account = web3.eth.accounts[0];
+    $('#sender').val(account);
+    var accountInterval = setInterval(function() {
+      if (web3.eth.accounts[0] !== account) {
+        account = web3.eth.accounts[0];
+        $('#sender').val(account);
+        document.getElementById("sender").innerHTML = account;
+      }
+    }, 100);
+  }
+});
+</script>
+<script type="text/javascript">
+$('#file-upload').change(function() {
+  var i = $(this).prev('label').clone();
+  var file = $('#file-upload')[0].files[0].name;
+  $(this).prev('label').text(file);
+});
+</script>

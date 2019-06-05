@@ -13,13 +13,13 @@
         <p>Create a Transaction</p>
       </a>
     </li>
-    <li class="active">
+    <li>
       <a href="/transactions/list">
         <i class="nc-icon nc-align-left-2"></i>
         <p>List of Transactions</p>
       </a>
     </li>
-    <li>
+    <li class="active">
       <a href="/transactions/search">
         <i class="nc-icon nc-zoom-split"></i>
         <p>Search a Transaction</p>
@@ -30,10 +30,31 @@
 <%- contentFor('body') %>
 <div class="row">
   <div class="col-md-12">
-    <div class="card">
+    <div class="card card-user">
       <div class="card-header">
-        <h4 class="card-title"> List of Transactions</h4>
+        <h5 class="card-title">Search a Transaction</h5>
       </div>
+      <div class="card-body">
+        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="/transactions/new">
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>Search</label>
+                <input type="text" id="search" name="search" class="form-control" placeholder="Transaction Id" value="">
+                <div class="update ml-auto mr-auto">
+                  <button value="submit" type="submit" class="btn btn-primary btn-round">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
@@ -44,7 +65,6 @@
               <th class="text-right">Timestamp</th>
             </thead>
             <tbody>
-              <% for (transaction of transactions){%>
               <tr>
                 <td><%= transaction.sender %></td>
                 <td><%= transaction.receiver %></td>
@@ -52,7 +72,6 @@
                 <td class="text-right"><%= transaction.timestamp %></td>
                 <td><button class="btn btn-primary btn-round" type="button" name="button">Open</button></td>
               </tr>
-              <% } %>
             </tbody>
           </table>
         </div>

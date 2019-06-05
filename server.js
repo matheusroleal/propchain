@@ -1,4 +1,6 @@
 var express = require('express');
+var expressLayouts = require('express-ejs-layouts')
+var bodyParser = require('body-parser')
 var app = express();
 
 // Upload local modules
@@ -9,28 +11,35 @@ var mongodb = require('./utils/mongodb.js');
 const multer = require('multer');
 const upload = multer();
 
-app.use(express.static(__dirname+'/view'));
+app.use(express.static(__dirname+'/views'));
+
+// Setting EJS as our engine
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.use(bodyParser.urlencoded());
 
 // Front End Requests
 app.get('/', function (req, res) {
-  res.sendFile(__dirname+'/view/routes/dashboard.html');
+  res.render('routes/dashboard');
 });
 
 app.get('/transactions/list', function (req, res) {
-  res.sendFile(__dirname+'/view/routes/list.html');
+  res.render('routes/list',{ transactions: [{sender: "sender1", receiver: "receiver1", filepath: "file1",timestamp: "1"},{sender: "sender2", receiver: "receiver2", filepath: "file2",timestamp: "2"}]});
 });
 
 app.get('/transactions/search', function (req, res) {
-  res.sendFile(__dirname+'/view/routes/search.html');
+  res.render('routes/search', {transaction: {sender: "sender1", receiver: "receiver1", filepath: "file1",timestamp: "1"}});
 });
 
 app.get('/transactions/create', function (req, res) {
-  res.sendFile(__dirname+'/view/routes/create.html');
+  res.render('routes/create');
 });
 
 // Back End Requests
 app.post('/transactions/new', upload.any(), function (req, res) {
+  // Create file
   var file_path = file_system.load_buffer_file(req.files[0].buffer, req.files[0].originalname);
+  // Send file from the database
   mongodb.write(file_path,req.files[0].originalname);
   res.redirect('/transactions/create');
 });
