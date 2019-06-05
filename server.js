@@ -16,7 +16,7 @@ app.use(express.static(__dirname+'/public'));
 // Setting EJS as our engine
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}))
 
 // Front End Requests
 app.get('/', function (req, res) {
@@ -36,11 +36,11 @@ app.get('/transactions/create', function (req, res) {
 });
 
 // Back End Requests
-app.post('/transactions/new', upload.any(), function (req, res) {
+app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
   // Create file
-  var file_path = file_system.load_buffer_file(req.files[0].buffer, req.files[0].originalname);
+  var file_path = file_system.load_buffer_file(req.file.buffer, req.file.originalname);
   // Send file from the database
-  mongodb.write(file_path,req.files[0].originalname);
+  mongodb.write(file_path,req.file.originalname);
   res.redirect('/transactions/create');
 });
 

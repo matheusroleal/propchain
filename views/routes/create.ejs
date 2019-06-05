@@ -52,7 +52,7 @@
                 <label class="btn btn-primary btn-round" for="file-upload">
                   <i></i> Choose file
                 </label>
-                <input id="file-upload" type="file" style="display:none;">
+                <input id="file-upload" name="uploadFile" type="file" style="display:none;">
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button value="submit" type="submit" class="btn btn-primary btn-round">Send</button>
+              <button value="Upload" type="submit" class="btn btn-primary btn-round">Send</button>
             </div>
           </div>
         </form>
@@ -82,6 +82,7 @@
     </div>
   </div>
 </div>
+<%- contentFor('data') %>
 <!-- Web3 -->
 <script src="../js/plugins/web3.min.js"></script>
 <script type="text/javascript">
