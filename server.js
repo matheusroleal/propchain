@@ -11,7 +11,7 @@ var mongodb = require('./utils/mongodb.js');
 const multer = require('multer');
 const upload = multer();
 
-app.use(express.static(__dirname+'/views'));
+app.use(express.static(__dirname+'/public'));
 
 // Setting EJS as our engine
 app.set('view engine', 'ejs');
