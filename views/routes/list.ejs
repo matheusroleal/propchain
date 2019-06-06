@@ -45,19 +45,22 @@
             </thead>
             <tbody>
               <% for (transaction of transactions){%>
-              <tr>
-                <td><%= transaction.sender %></td>
-                <td><%= transaction.receiver %></td>
-                <td><%= transaction.filepath %></td>
-                <td class="text-right"><%= transaction.timestamp %></td>
-                <td><button class="btn btn-primary btn-round" type="button" name="button">Open</button></td>
-              </tr>
+                <form enctype="multipart/form-data" method="post" action="/transactions/get">
+                <tr>
+                  <td><%= transaction.sender %></td>
+                  <td><%= transaction.receiver %></td>
+                  <td><%= transaction.filepath %></td>
+                  <td class="text-right"><%= transaction.timestamp %></td>
+                  <td><input type="hidden" id="file_name" name="file_name" value="<%= transaction.filepath %>" /></td>
+                  <td><button class="btn btn-primary btn-round" value="Upload" type="submit">Open</button></td>
+                </tr>
+              </form>
               <% } %>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<%- contentFor('data') %>
+  <%- contentFor('data') %>
