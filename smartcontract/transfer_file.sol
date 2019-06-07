@@ -1,16 +1,35 @@
-pragma solidity >=0.4.22 <0.6.0;
+pragma experimental ABIEncoderV2;
 
 contract TransferFile {
 
+    // Data related to the transaction
     mapping (string => bool) private transaction;
     mapping (string => string) private data;
 
-    function setTransaction(string memory data_to_send, string memory receiver) public payable returns (string memory){
+    // Store file transaction data
+    struct Transfer {
+        string sender;
+        string receiver;
+        string transactionId;
+        string fileId;
+    }
+
+    Transfer[] transactions;
+
+    function setTransaction(string memory data_to_send, string memory receiver) public payable {
+        // Change sender to string
         string memory transaction_sender = toString(msg.sender);
+        // Concatenate sender, receiver, and time in one string
         string memory transaction_id = string(abi.encodePacked(transaction_sender,receiver,Time_call()));
+        // Add transaction info in maps
         transaction[transaction_id] = true;
         data[transaction_id] = data_to_send;
-        return transaction_id;
+        // Store data of the transaction
+        transactions.push(Transfer({sender: transaction_sender, receiver: receiver, transactionId: transaction_id, fileId: data_to_send}));
+    }
+
+    function getTransctions() public payable returns(Transfer [] memory){
+        return transactions;
     }
 
     function getFile(string memory tran_id) public returns (string memory){
@@ -22,10 +41,7 @@ contract TransferFile {
         return transaction[tran_id];
     }
 
-    function getAdrress() public returns(string memory){
-        return toString(msg.sender);
-    }
-
+    // Utils fun
     function toString(address x)private returns (string memory) {
         bytes memory b = new bytes(20);
         for (uint i = 0; i < 20; i++){
