@@ -34,12 +34,12 @@ app.get('/transactions/search', function (req, res) {
 });
 
 app.get('/transactions/create', function (req, res) {
-  res.render('routes/create');
+  res.render('routes/create', {randomId: mongodb.randomID()});
 });
 
 // Back End Requests
 app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
-  docId = mongodb.randomID()
+  docId = req.body.fileId;
   // Send file from the database
   mongodb.uploadFile(docId,req,res);
   res.redirect('/transactions/create');
