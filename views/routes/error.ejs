@@ -1,0 +1,45 @@
+<%- contentFor('navbar') %>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <li>
+      <a href="/">
+        <i class="nc-icon nc-globe"></i>
+        <p>Home</p>
+      </a>
+    </li>
+    <li>
+      <a href="/transactions/create">
+        <i class="nc-icon nc-book-bookmark"></i>
+        <p>Create a Transaction</p>
+      </a>
+    </li>
+    <li>
+      <a href="/transactions/list">
+        <i class="nc-icon nc-align-left-2"></i>
+        <p>List of Transactions</p>
+      </a>
+    </li>
+    <li>
+      <a href="/transactions/search">
+        <i class="nc-icon nc-zoom-split"></i>
+        <p>Search a Transaction</p>
+      </a>
+    </li>
+  </ul>
+</div>
+<%- contentFor('body') %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Error !</h5>
+      </div>
+      <div class="card-body ">
+        <p>You are not Connected to Web3 !</p>
+        <p>You need a bridge that allows you to visit the distributed web of tomorrow in your browser today. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node.</p>
+        <p>Please install <a href="https://github.com/MetaMask/metamask-extension">Metamask</a> or other bridge provider</p>
+      </div>
+    </div>
+  </div>
+</div>
+<%- contentFor('data') %>

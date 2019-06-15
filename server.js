@@ -37,12 +37,27 @@ app.get('/transactions/create', function (req, res) {
   res.render('routes/create', {randomId: mongodb.randomID()});
 });
 
+app.get('/error', function (req, res) {
+  res.render('routes/error');
+});
+
 // Back End Requests
 app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
-  docId = req.body.fileId;
-  // Send file from the database
-  mongodb.uploadFile(docId,req,res);
-  res.redirect('/transactions/create');
+  // Check if is Connected to Web3
+  isWeb3Connected = req.body.isWConn
+
+  if (isWeb3Connected == 'True'){
+
+    docId = req.body.fileId;
+
+    // Send file from the database
+    mongodb.uploadFile(docId,req,res);
+    
+    res.redirect('/transactions/create');
+
+  } else{
+    res.redirect('/error');
+  }
 });
 
 app.post('/transactions/get', upload.any(), function(req, res){

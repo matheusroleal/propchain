@@ -57,6 +57,7 @@
             </div>
           </div>
           <input type="hidden" id="fileId" name="fileId" class="form-control" value="<%= randomId %>">
+          <input type="hidden" id="isWConn" name="isWConn" class="form-control" value="">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -83,6 +84,7 @@ window.addEventListener('load', function() {
   // Load WEB3
   // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
   if(typeof web3 !== 'undefined') {
+    $("#isWConn").val('True');
     // Connected my metamask account to app
     ethereum.enable()
 
@@ -96,6 +98,8 @@ window.addEventListener('load', function() {
         document.getElementById("sender").innerHTML = account;
       }
     }, 100);
+  }else {
+    $("#isWConn").val('False');
   }
 });
 </script>
