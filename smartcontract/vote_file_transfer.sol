@@ -1,4 +1,4 @@
-pragma solidity >=0.4.22 <0.6.0;
+pragma experimental ABIEncoderV2;
 
 contract voteTransfer {
 
@@ -13,6 +13,7 @@ contract voteTransfer {
     // Data related with defining winner
     struct Proposal {
         string file_name;
+        string sender;
     }
 
     Proposal [] proposals;
@@ -23,27 +24,37 @@ contract voteTransfer {
     }
 
     // Defining a file transaction to the server
-    function setTransaction(string memory data_to_send) public payable {
+    function setProposal(string memory data_to_send) public payable {
         if ( toProposal >= proposals.length) return;
         string memory transaction_sender = toString(msg.sender);
         transaction[data_to_send] = true;
+        // Add ownership and initialize the vote counter
         data[data_to_send] = transaction_sender;
         vote[data_to_send] = 0;
+        // Add proposal to the proposals array
         proposals[toProposal].file_name = data_to_send;
+        proposals[toProposal].sender = transaction_sender;
         toProposal += 1;
     }
 
     // Voting for a file
-    function setVoteTransaction(string memory data_to_send) public payable {
+    function voteFile(string memory data_to_send) public payable {
         string memory transaction_sender = toString(msg.sender);
+        // Set the transaction id and mark as voted
         string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
         voteTransaction[transaction_id] = true;
         vote[data_to_send] = vote[data_to_send] + 1;
     }
 
+    // Show the proposals defined
+    function getProposals() public payable returns(Proposal [] memory){
+        return proposals;
+    }
+
     // Checking if that address has already voted for that file
-    function hasVoted(string memory data_to_send, string memory sender)public returns(bool){
-        string memory transaction_id = string(abi.encodePacked(sender,data_to_send));
+    function hasVoted(string memory data_to_send)public returns(bool){
+        string memory transaction_sender = toString(msg.sender);
+        string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
         return voteTransaction[transaction_id];
     }
 
@@ -57,6 +68,7 @@ contract voteTransfer {
                 _winningProposal = fn;
             }
         }
+        return _winningProposal;
     }
 
     // Utils functions
