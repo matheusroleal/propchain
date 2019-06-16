@@ -12,6 +12,7 @@ contract voteTransfer {
 
     // Data related with defining winner
     struct Proposal {
+        string file_id;
         string file_name;
         string sender;
     }
@@ -24,26 +25,27 @@ contract voteTransfer {
     }
 
     // Defining a file transaction to the server
-    function setProposal(string memory data_to_send) public payable {
+    function setProposal(string memory dataId, string memory dataName) public payable {
         if ( toProposal >= proposals.length) return;
         string memory transaction_sender = toString(msg.sender);
-        transaction[data_to_send] = true;
+        transaction[dataId] = true;
         // Add ownership and initialize the vote counter
-        data[data_to_send] = transaction_sender;
-        vote[data_to_send] = 0;
+        data[dataId] = transaction_sender;
+        vote[dataId] = 0;
         // Add proposal to the proposals array
-        proposals[toProposal].file_name = data_to_send;
+        proposals[toProposal].file_id = dataName;
+        proposals[toProposal].file_name = dataId;
         proposals[toProposal].sender = transaction_sender;
         toProposal += 1;
     }
 
     // Voting for a file
-    function voteFile(string memory data_to_send) public payable {
+    function voteFile(string memory dataId) public payable {
         string memory transaction_sender = toString(msg.sender);
         // Set the transaction id and mark as voted
-        string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
+        string memory transaction_id = string(abi.encodePacked(transaction_sender,dataId));
         voteTransaction[transaction_id] = true;
-        vote[data_to_send] = vote[data_to_send] + 1;
+        vote[dataId] = vote[dataId] + 1;
     }
 
     // Show the proposals defined
@@ -52,9 +54,9 @@ contract voteTransfer {
     }
 
     // Checking if that address has already voted for that file
-    function hasVoted(string memory data_to_send)public returns(bool){
+    function hasVoted(string memory dataId)public returns(bool){
         string memory transaction_sender = toString(msg.sender);
-        string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
+        string memory transaction_id = string(abi.encodePacked(transaction_sender,dataId));
         return voteTransaction[transaction_id];
     }
 
