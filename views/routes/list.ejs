@@ -10,19 +10,19 @@
     <li>
       <a href="/transactions/create">
         <i class="nc-icon nc-book-bookmark"></i>
-        <p>Create a Transaction</p>
+        <p>Create a Proposal</p>
       </a>
     </li>
     <li class="active">
       <a href="/transactions/list">
         <i class="nc-icon nc-align-left-2"></i>
-        <p>List of Transactions</p>
+        <p>List of Proposals</p>
       </a>
     </li>
     <li>
       <a href="/transactions/search">
         <i class="nc-icon nc-zoom-split"></i>
-        <p>Search a Transaction</p>
+        <p>Search a Proposal</p>
       </a>
     </li>
   </ul>
@@ -32,7 +32,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> List of Transactions</h4>
+        <h4 class="card-title"> List of Proposals</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -53,6 +53,7 @@
                   <td class="text-right"><%= transaction.timestamp %></td>
                   <td><input type="hidden" id="file_name" name="file_name" value="<%= transaction.filepath %>" /></td>
                   <td><button class="btn btn-primary btn-round" value="Upload" type="submit">Open</button></td>
+                  <td><button class="btn btn-primary btn-round" onclick="sendProposalVote(<%= transaction.fileId %>)" type="button">Vote</button></td>
                 </tr>
               </form>
               <% } %>
@@ -64,3 +65,5 @@
     </div>
   </div>
   <%- contentFor('data') %>
+  <script src="../js/plugins/web3.min.js"></script>
+  <script src="../js/web3voteProposal.js"></script>
