@@ -77,36 +77,7 @@
   </div>
 </div>
 <%- contentFor('data') %>
+<script src="../js/fileUpload.js"></script>
 <!-- Web3 -->
 <script src="../js/plugins/web3.min.js"></script>
-<script type="text/javascript">
-window.addEventListener('load', function() {
-  // Load WEB3
-  // Check wether it's already injected by something else (like Metamask or Parity Chrome plugin)
-  if(typeof web3 !== 'undefined') {
-    $("#isWConn").val('True');
-    // Connected my metamask account to app
-    ethereum.enable()
-
-    web3 = new Web3(web3.currentProvider);
-    var account = web3.eth.accounts[0];
-    $('#sender').val(account);
-    var accountInterval = setInterval(function() {
-      if (web3.eth.accounts[0] !== account) {
-        account = web3.eth.accounts[0];
-        $('#sender').val(account);
-        document.getElementById("sender").innerHTML = account;
-      }
-    }, 100);
-  }else {
-    $("#isWConn").val('False');
-  }
-});
-</script>
-<script type="text/javascript">
-$('#file-upload').change(function() {
-  var i = $(this).prev('label').clone();
-  var file = $('#file-upload')[0].files[0].name;
-  $(this).prev('label').text(file);
-});
-</script>
+<script src="../js/web3sendProposal.js"></script>
