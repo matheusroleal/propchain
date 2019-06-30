@@ -13,7 +13,7 @@ contract voteTransfer {
     // Data related with defining winner
     struct Proposal {
         string file_name;
-        string sender;
+        address sender;
     }
 
     Proposal [] proposals;
@@ -33,7 +33,7 @@ contract voteTransfer {
         vote[data_to_send] = 0;
         // Add proposal to the proposals array
         proposals[toProposal].file_name = data_to_send;
-        proposals[toProposal].sender = transaction_sender;
+        proposals[toProposal].sender = msg.sender;
         toProposal += 1;
     }
 
@@ -47,12 +47,12 @@ contract voteTransfer {
     }
 
     // Show the proposals defined
-    function getProposals() public payable returns(Proposal [] memory){
+    function getProposals() public view returns(Proposal [] memory){
         return proposals;
     }
 
     // Checking if that address has already voted for that file
-    function hasVoted(string memory data_to_send)public returns(bool){
+    function hasVoted(string memory data_to_send)public view returns(bool){
         string memory transaction_sender = toString(msg.sender);
         string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
         return voteTransaction[transaction_id];
@@ -72,7 +72,7 @@ contract voteTransfer {
     }
 
     // Utils functions
-    function toString(address x)private returns (string memory) {
+    function toString(address x)private view returns (string memory) {
         bytes memory b = new bytes(20);
         for (uint i = 0; i < 20; i++){
             b[i] = byte(uint8(uint(x) / (2**(8*(19 - i)))));
