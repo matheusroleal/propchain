@@ -25,7 +25,7 @@
         <p>Search a Proposal</p>
       </a>
     </li>
-    <li>
+    <li class="active">
       <a href="/proposal/countdown">
         <i class="nc-icon nc-chart-bar-32"></i>
         <p>Proposal Countdown</p>
@@ -38,14 +38,17 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Error !</h5>
+        <h5 class="card-title">Proposal Countdown</h5>
       </div>
       <div class="card-body ">
-        <p>You are not Connected to Web3 !</p>
-        <p>You need a bridge that allows you to visit the distributed web of tomorrow in your browser today. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node.</p>
-        <p>Please install <a href="https://github.com/MetaMask/metamask-extension">Metamask</a> or other bridge provider</p>
+        <input id="date" type="hidden" name="date" value="<%= date %>">
+        <p style="text-align: center; font-size: 60px;  margin-top: 0px;"id="countdown"></p>
       </div>
     </div>
   </div>
 </div>
 <%- contentFor('data') %>
+<script src="../js/countdown.js"></script>
+<!-- Web3 -->
+<script src="../js/plugins/web3.min.js"></script>
+<script src="../js/web3setWinner.js"></script>

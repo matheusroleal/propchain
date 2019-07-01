@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/transactions/list', function (req, res) {
-  res.render('routes/list',{ transactions: [{sender: "sender1", receiver: "receiver1", filepath: "file1",timestamp: "1"},{sender: "sender2", receiver: "receiver2", filepath: "file2",timestamp: "2"}]});
+  res.render('routes/list',{ transactions: [{sender: "sender1", receiver: "receiver1", filepath: "file1",fileId: "12345",timestamp: "1"},{sender: "sender2", receiver: "receiver2", filepath: "file2",fileId: "12345",timestamp: "2"}]});
 });
 
 app.get('/transactions/search', function (req, res) {
@@ -35,6 +35,10 @@ app.get('/transactions/search', function (req, res) {
 
 app.get('/transactions/create', function (req, res) {
   res.render('routes/create', {randomId: mongodb.randomID()});
+});
+
+app.get('/proposal/countdown', function (req, res) {
+  res.render('routes/countdown', {date: "Jan 5, 2021 15:37:25"});
 });
 
 app.get('/error', function (req, res) {
@@ -52,7 +56,7 @@ app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
 
     // Send file from the database
     mongodb.uploadFile(docId,req,res);
-    
+
     res.redirect('/transactions/create');
 
   } else{
