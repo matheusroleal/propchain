@@ -6,7 +6,70 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "dataId",
+				"name": "data_to_send",
+				"type": "string"
+			}
+		],
+		"name": "setProposal",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_numProposals",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "data_to_send",
+				"type": "string"
+			}
+		],
+		"name": "voteFile",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getProposals",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "file_name",
+						"type": "string"
+					},
+					{
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "data_to_send",
 				"type": "string"
 			}
 		],
@@ -18,39 +81,7 @@ var contractABI = [
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "dataId",
-				"type": "string"
-			},
-			{
-				"name": "dataName",
-				"type": "string"
-			}
-		],
-		"name": "setProposal",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "dataId",
-				"type": "string"
-			}
-		],
-		"name": "voteFile",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -66,45 +97,6 @@ var contractABI = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "getProposals",
-		"outputs": [
-			{
-				"components": [
-					{
-						"name": "file_id",
-						"type": "string"
-					},
-					{
-						"name": "file_name",
-						"type": "string"
-					},
-					{
-						"name": "sender",
-						"type": "string"
-					}
-				],
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "_numProposals",
-				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	}
 ];
 
@@ -118,14 +110,46 @@ window.addEventListener('load', function() {
     web3 = new Web3(web3.currentProvider);
     account = web3.eth.accounts[0];
 
+		getProposals()
   }
 });
+
+function getProposals() {
+	// Check if is Connected to web3
+	if(account){
+		// Set Address from Deployed Contract
+	  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
+
+		//creating contract object
+	  // var contract = web3.eth.contract(contractABI,contractAddress);
+		var contract = 	web3.eth.contract(contractABI).at(contractAddress);
+
+		// Set Transaction Set Up
+	  var transactionObject = {
+	    from: account,
+	    gas: 3000000,
+	    gasPrice: 60000
+	  };
+
+		contract.getProposals.call(transactionObject,(error,result) => {
+			if(error) {
+				console.log(error);
+			}else{
+				console.log(result);
+			}
+		});
+	}else {
+		// Alert to refresh metamask
+		alert("You are not Connected to Web3 ! You need a bridge that allows you to visit the distributed web of tomorrow in your browser today. Please install Metamask or other bridge provider")
+	}
+
+}
 
 function sendProposalVote(fileId) {
 	// Check if is Connected to web3
 	if(account){
 		// Set Address from Deployed Contract
-	  var contractAddress ="0x31f66bb8f37045f5edc56ce40689c7a041e93905";
+	  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
 
 		//creating contract object
 	  // var contract = web3.eth.contract(contractABI,contractAddress);

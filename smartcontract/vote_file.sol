@@ -7,8 +7,11 @@ contract voteTransfer {
     mapping (string => string) private data;
 
     // Data related with the file voters
-    mapping (string => bool) private voteTransaction;
+    mapping (address => bool) private voteTransaction;
     mapping (string => uint256) private vote;
+
+    // Give more vote value for winners
+    mapping (address => uint256) private winValue;
 
     // Data related with defining winner
     struct Proposal {
@@ -39,11 +42,12 @@ contract voteTransfer {
 
     // Voting for a file
     function voteFile(string memory data_to_send) public payable {
+        if ( voteTransaction[msg.sender] == true ) return;
         string memory transaction_sender = toString(msg.sender);
         // Set the transaction id and mark as voted
         string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
-        voteTransaction[transaction_id] = true;
-        vote[data_to_send] = vote[data_to_send] + 1;
+        voteTransaction[msg.sender] = true;
+        vote[data_to_send] = vote[data_to_send] + 1 + winValue[msg.sender];
     }
 
     // Show the proposals defined
@@ -52,22 +56,26 @@ contract voteTransfer {
     }
 
     // Checking if that address has already voted for that file
-    function hasVoted(string memory data_to_send)public view returns(bool){
-        string memory transaction_sender = toString(msg.sender);
-        string memory transaction_id = string(abi.encodePacked(transaction_sender,data_to_send));
-        return voteTransaction[transaction_id];
+    function hasVoted(address sender)public view returns(bool){
+      if(voteTransaction[sender] == true){
+        return true;
+      }
+      return false;
     }
 
     // Defining most voted file
-    function winningProposal() public view returns (string memory _winningProposal) {
+    function winningProposal() public payable returns (string memory _winningProposal) {
         uint256 winningVoteCount = 0;
+        address winningAdd;
         for (uint8 prop = 0; prop < proposals.length; prop++){
             string memory fn = proposals[prop].file_name;
             if (vote[fn] > winningVoteCount) {
                 winningVoteCount = vote[fn];
+                winningAdd = proposals[prop].sender;
                 _winningProposal = fn;
             }
         }
+        winValue[winningAdd] += 2;
         return _winningProposal;
     }
 

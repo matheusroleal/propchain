@@ -6,7 +6,70 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "dataId",
+				"name": "data_to_send",
+				"type": "string"
+			}
+		],
+		"name": "setProposal",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_numProposals",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "data_to_send",
+				"type": "string"
+			}
+		],
+		"name": "voteFile",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getProposals",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "file_name",
+						"type": "string"
+					},
+					{
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "data_to_send",
 				"type": "string"
 			}
 		],
@@ -18,39 +81,7 @@ var contractABI = [
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "dataId",
-				"type": "string"
-			},
-			{
-				"name": "dataName",
-				"type": "string"
-			}
-		],
-		"name": "setProposal",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "dataId",
-				"type": "string"
-			}
-		],
-		"name": "voteFile",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -66,45 +97,6 @@ var contractABI = [
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "getProposals",
-		"outputs": [
-			{
-				"components": [
-					{
-						"name": "file_id",
-						"type": "string"
-					},
-					{
-						"name": "file_name",
-						"type": "string"
-					},
-					{
-						"name": "sender",
-						"type": "string"
-					}
-				],
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "_numProposals",
-				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	}
 ];
 
@@ -137,7 +129,7 @@ function sendFileProposal() {
   var fileName = $("#file-upload").val();
 
 	// Set Address from Deployed Contract
-  var contractAddress ="0x31f66bb8f37045f5edc56ce40689c7a041e93905";
+  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
 
 	//creating contract object
   // var contract = web3.eth.contract(contractABI,contractAddress);
