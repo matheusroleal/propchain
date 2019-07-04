@@ -44,25 +44,10 @@
         <div class="table-responsive">
           <table class="table">
             <thead class=" text-primary">
-              <th>Sender</th>
-              <th>Receiver</th>
-              <th>Data</th>
-              <th class="text-right">Timestamp</th>
+              <th>File Name</th>
+              <th>Owner</th>
             </thead>
-            <tbody>
-              <% for (transaction of transactions){%>
-                <form enctype="multipart/form-data" method="post" action="/transactions/get">
-                <tr>
-                  <td><%= transaction.sender %></td>
-                  <td><%= transaction.receiver %></td>
-                  <td><%= transaction.filepath %></td>
-                  <td class="text-right"><%= transaction.timestamp %></td>
-                  <td><input type="hidden" id="file_name" name="file_name" value="<%= transaction.filepath %>" /></td>
-                  <td><button class="btn btn-primary btn-round" value="Upload" type="submit">Open</button></td>
-                  <td><button class="btn btn-primary btn-round" onclick="sendProposalVote(<%= transaction.fileId %>)" type="button">Vote</button></td>
-                </tr>
-              </form>
-              <% } %>
+            <tbody id="host_table">
             </tbody>
             </table>
           </div>
