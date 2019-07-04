@@ -6,7 +6,11 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "data_to_send",
+				"name": "data_id",
+				"type": "string"
+			},
+			{
+				"name": "data_name",
 				"type": "string"
 			}
 		],
@@ -31,12 +35,30 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "data_to_send",
+				"name": "data_id",
 				"type": "string"
 			}
 		],
 		"name": "voteFile",
 		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "winningProposal",
+		"outputs": [
+			{
+				"name": "_winningProposal",
+				"type": "string"
+			},
+			{
+				"name": "_winningAddress",
+				"type": "address"
+			}
+		],
 		"payable": true,
 		"stateMutability": "payable",
 		"type": "function"
@@ -50,6 +72,10 @@ var contractABI = [
 				"components": [
 					{
 						"name": "file_name",
+						"type": "string"
+					},
+					{
+						"name": "file_id",
 						"type": "string"
 					},
 					{
@@ -69,8 +95,8 @@ var contractABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "data_to_send",
-				"type": "string"
+				"name": "sender",
+				"type": "address"
 			}
 		],
 		"name": "hasVoted",
@@ -78,20 +104,6 @@ var contractABI = [
 			{
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "winningProposal",
-		"outputs": [
-			{
-				"name": "_winningProposal",
-				"type": "string"
 			}
 		],
 		"payable": false,
@@ -132,7 +144,7 @@ function getProposals() {
 	// Check if is Connected to web3
 	if(account){
 		// Set Address from Deployed Contract
-	  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
+	  var contractAddress ="0x5895d8436b971855eb8472fc5484754c78892b83";
 
 		//creating contract object
 	  var contract = new web3.eth.Contract(contractABI,contractAddress);
@@ -160,11 +172,11 @@ function getProposals() {
 				$.each(proposals, function(index, proposal) {
 					if (proposal[0]){
 						$table.append("<tr>");
-						$table.append("<td scope='row'>"+ proposal[1] + "</td>");
+						$table.append("<td scope='row'>"+ proposal[0] + "</td>");
 						$table.append("<td>"+ proposal[2] + "</td>")
-						$table.append("<form enctype='multipart/form-data' method='post' action='/transactions/get'>");
-						$table.append("<td><input type='hidden' id='fileId' name='fileId' value="+ proposal[0] +"/></td>");
-						$table.append("<td><button class='btn btn-primary btn-round' value='Upload' type='submit'>Open</button></td>");
+						$table.append("<form id='FileForm' enctype='multipart/form-data' method='post' action='/transactions/get'>");
+						$table.append("<td><input type='hidden' id='fileId' name='fileId' value="+ proposal[1] +"/></td>");
+						$table.append("<td><button class='btn btn-primary btn-round' onclick='openFile()' type='button'>Open</button></td>");
 						$table.append("<td><button class='btn btn-primary btn-round' onclick='sendProposalVote()' type='button'>Vote</button></td>");;
 						$table.append("</form>");
 						$table.append("</tr>");
@@ -178,6 +190,10 @@ function getProposals() {
 		alert("You are not Connected to Web3 ! You need a bridge that allows you to visit the distributed web of tomorrow in your browser today. Please install Metamask or other bridge provider")
 	}
 
+}
+
+function openFile() {
+	document.getElementById("FileForm").submit();
 }
 
 function sendProposalVote() {
@@ -199,8 +215,7 @@ function sendProposalVote() {
 	    gasPrice: 50000
 	  };
 
-	  // contract.voteFile("12345").call(transactionObject).then((result) => console.log(web3.utils.hexToAscii(result)));
-		contract.methods.voteFile(fileId).sendTransaction(transactionObject, (error, result) => {
+		contract.methods.voteFile(fileId).send(transactionObject, (error, result) => {
 			if(error) {
 				console.log(error);
 			}else{

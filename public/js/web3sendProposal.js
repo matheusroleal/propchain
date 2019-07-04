@@ -6,7 +6,11 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "data_to_send",
+				"name": "data_id",
+				"type": "string"
+			},
+			{
+				"name": "data_name",
 				"type": "string"
 			}
 		],
@@ -31,12 +35,30 @@ var contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "data_to_send",
+				"name": "data_id",
 				"type": "string"
 			}
 		],
 		"name": "voteFile",
 		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "winningProposal",
+		"outputs": [
+			{
+				"name": "_winningProposal",
+				"type": "string"
+			},
+			{
+				"name": "_winningAddress",
+				"type": "address"
+			}
+		],
 		"payable": true,
 		"stateMutability": "payable",
 		"type": "function"
@@ -50,6 +72,10 @@ var contractABI = [
 				"components": [
 					{
 						"name": "file_name",
+						"type": "string"
+					},
+					{
+						"name": "file_id",
 						"type": "string"
 					},
 					{
@@ -69,8 +95,8 @@ var contractABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "data_to_send",
-				"type": "string"
+				"name": "sender",
+				"type": "address"
 			}
 		],
 		"name": "hasVoted",
@@ -78,20 +104,6 @@ var contractABI = [
 			{
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "winningProposal",
-		"outputs": [
-			{
-				"name": "_winningProposal",
-				"type": "string"
 			}
 		],
 		"payable": false,
@@ -146,7 +158,7 @@ function sendFileProposal() {
   var fileName = $("#file-upload").val();
 
 	// Set Address from Deployed Contract
-  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
+  var contractAddress ="0x5895d8436b971855eb8472fc5484754c78892b83";
 
 	//creating contract object
 	var contract = new web3.eth.Contract(contractABI,contractAddress);
@@ -158,12 +170,12 @@ function sendFileProposal() {
     gasPrice: 60000
   };
 
-  // contract.sendTransaction("").call(transactionObject).then((result) => console.log(web3.utils.hexToAscii(result)));
-	contract.methods.setProposal(fileId, fileName).sendTransaction(transactionObject, (error, result) => {
+	contract.methods.setProposal(fileId, fileName).send(transactionObject, (error, result) => {
 		if(error) {
 			console.log(error);
 		}else{
 			console.log(result);
+    	document.getElementById("newProposal").submit();
 		}
 	});
 }

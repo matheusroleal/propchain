@@ -41,7 +41,7 @@
         <h5 class="card-title">Create a Proposal</h5>
       </div>
       <div class="card-body">
-        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="/transactions/new">
+        <form id="newProposal" enctype="multipart/form-data" method="post" action="/transactions/new">
           <div class="row">
             <div class="col-md-5 pr-1">
               <div class="form-group">
@@ -74,7 +74,7 @@
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button value="Upload" type="submit" class="btn btn-primary btn-round">Send</button>
+              <button value="Upload" type="button" onclick='sendFileProposal()' class="btn btn-primary btn-round">Send</button>
             </div>
           </div>
         </form>
