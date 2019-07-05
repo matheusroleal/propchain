@@ -158,7 +158,7 @@ function sendFileProposal() {
   var fileName = $("#file-upload").val();
 
 	// Set Address from Deployed Contract
-  var contractAddress ="0x5895d8436b971855eb8472fc5484754c78892b83";
+  var contractAddress ="0xe4f0e9e6de011fedb43286ad1e05661dea5a7183";
 
 	//creating contract object
 	var contract = new web3.eth.Contract(contractABI,contractAddress);

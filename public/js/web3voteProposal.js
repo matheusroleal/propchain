@@ -144,7 +144,7 @@ function getProposals() {
 	// Check if is Connected to web3
 	if(account){
 		// Set Address from Deployed Contract
-	  var contractAddress ="0x5895d8436b971855eb8472fc5484754c78892b83";
+	  var contractAddress ="0xe4f0e9e6de011fedb43286ad1e05661dea5a7183";
 
 		//creating contract object
 	  var contract = new web3.eth.Contract(contractABI,contractAddress);
@@ -168,17 +168,16 @@ function getProposals() {
 
 				var proposals = result
 
-				// Cria a linha para cada host
+				// Cria a linha para cada proposal
 				$.each(proposals, function(index, proposal) {
 					if (proposal[0]){
 						$table.append("<tr>");
 						$table.append("<td scope='row'>"+ proposal[0] + "</td>");
-						$table.append("<td>"+ proposal[2] + "</td>")
-						$table.append("<form id='FileForm' enctype='multipart/form-data' method='post' action='/transactions/get'>");
-						$table.append("<td><input type='hidden' id='fileId' name='fileId' value="+ proposal[1] +"/></td>");
-						$table.append("<td><button class='btn btn-primary btn-round' onclick='openFile()' type='button'>Open</button></td>");
-						$table.append("<td><button class='btn btn-primary btn-round' onclick='sendProposalVote()' type='button'>Vote</button></td>");;
-						$table.append("</form>");
+						$table.append("<td>"+ proposal[2] + "</td>");
+						$table.append("<td><button class='btn btn-primary btn-round' onclick='openFile(this)' type='button'>Open</button></td>");
+						$table.append("<td><input type='hidden' value="+proposal[1]+"></td>");
+						$table.append("<td><button class='btn btn-primary btn-round' onclick='sendProposalVote(this)' type='button'>Vote</button></td>");
+						$table.append("<td><input type='hidden' value="+proposal[1]+"></td>");
 						$table.append("</tr>");
 					}
 				});
@@ -192,18 +191,19 @@ function getProposals() {
 
 }
 
-function openFile() {
-	document.getElementById("FileForm").submit();
+function openFile(t) {
+	$("#fileId").val($(t).closest('td').next('td').find('input').val());
+	document.getElementById("getFile").submit();
 }
 
-function sendProposalVote() {
-	var fileId = $("#fileId").val();
+function sendProposalVote(t) {
+	var fileId = $(t).closest('td').next('td').find('input').val();
 	console.log(fileId);
 
 	// Check if is Connected to web3
 	if(account){
 		// Set Address from Deployed Contract
-	  var contractAddress ="0x0cf706388c2fdc058789a83666c0ceee1f5d7a35";
+	  var contractAddress ="0xe4f0e9e6de011fedb43286ad1e05661dea5a7183";
 
 		//creating contract object
 		var contract = new web3.eth.Contract(contractABI,contractAddress);
