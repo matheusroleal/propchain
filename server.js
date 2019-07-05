@@ -11,8 +11,6 @@ var mongodb = require('./utils/mongodb.js');
 const multer = require('multer');
 const upload = multer();
 
-var docId;
-
 app.use(express.static(__dirname+'/public'));
 
 // Setting EJS as our engine
@@ -26,7 +24,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/transactions/list', function (req, res) {
-  res.render('routes/list',{ transactions: [{sender: "sender1", receiver: "receiver1", filepath: "file1",fileId: "12345",timestamp: "1"},{sender: "sender2", receiver: "receiver2", filepath: "file2",fileId: "12345",timestamp: "2"}]});
+  res.render('routes/list');
 });
 
 app.get('/transactions/search', function (req, res) {
@@ -38,7 +36,7 @@ app.get('/transactions/create', function (req, res) {
 });
 
 app.get('/proposal/countdown', function (req, res) {
-  res.render('routes/countdown', {date: "Jan 5, 2021 15:37:25"});
+  res.render('routes/countdown', {date: "Jul 5, 2019 12:50:00"});
 });
 
 app.get('/error', function (req, res) {
@@ -52,7 +50,8 @@ app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
 
   if (isWeb3Connected == 'True'){
 
-    docId = req.body.fileId;
+    var docId = req.body.fileId;
+    console.log(docId);
 
     // Send file from the database
     mongodb.uploadFile(docId,req,res);
@@ -65,6 +64,12 @@ app.post('/transactions/new', upload.single('uploadFile'), function (req, res) {
 });
 
 app.post('/transactions/get', upload.any(), function(req, res){
+  console.log("bateu");
+
+  var docId = req.body.fileId;
+  console.log(req.body);
+  console.log(docId);
+
   // Get file from the database
   mongodb.downloadFile(docId,req,res);
 });

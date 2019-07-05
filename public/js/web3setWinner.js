@@ -140,7 +140,7 @@ window.addEventListener('load', async () => {
 
 function setWinningProposal() {
 	// Set Address from Deployed Contract
-  var contractAddress ="0x5895d8436b971855eb8472fc5484754c78892b83";
+  var contractAddress = "0xe4f0e9e6de011fedb43286ad1e05661dea5a7183";
 
 	//creating contract object
 	var contract = new web3.eth.Contract(contractABI,contractAddress);
@@ -152,11 +152,12 @@ function setWinningProposal() {
     gasPrice: 60000
   };
 
-	contract.methods.winningProposal().send(transactionObject, (error, result) => {
+	contract.methods.winningProposal().call(transactionObject, (error, result) => {
 		if(error) {
 			console.log(error);
 		}else{
 			console.log(result);
+			document.getElementById("countdown").innerHTML = "Winner: "+ result._winningAddress+" Proposal: "+ result._winningProposal;
 		}
 	});
 }
