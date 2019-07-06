@@ -15,8 +15,7 @@ Using this project you will be able to:
 In order to use the maximum of this project, you need a bridge that allows you to visit the distributed web of tomorrow in your browser today. This will allow you to run Ethereum dApps right in your browser without running a full Ethereum node. Please install [Metamask](https://github.com/MetaMask/metamask-extension) or other bridge provider.
 
 ## Run Locally
-1) install Docker and Docker Compose
-[Install Compose and Docker](https://docs.docker.com/compose/install/)
+1) [Install Docker and Docker Compose](https://docs.docker.com/compose/install/)
 2) Run Docker Compose
 ```
 make up
