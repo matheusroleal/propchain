@@ -1,1 +1,2 @@
 *.sol linguist-language=Solidity
+public/css/paper-dashboard.css linguist-detectable=false
